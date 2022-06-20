@@ -29,3 +29,7 @@
         - 새로운 어카운트를 생성해주고, 이 어카운트에 rent비용을 계산한 SOL 을 전송해줘야한다.
         - create_account 에 관련된 코드
         - 이제 initialize 만 해서 토큰과 연결해주고 owner 를 토큰을 전송해줄 지갑의 주소로 소유권을 변경해주면 토큰전송을 python 코드로 완성시킬 수 있을 것 같다.
+        - 4번을 통해 생성된 transaction
+            - https://solscan.io/tx/3ekssQADM9mTNKbLgzg3ukkYzmb1fBYEHLy2JLuxRimNqApTTNyxzX9cAda28JSeoLsM2Gv2ttX5Zvwbj5tf14Qf?cluster=devnet
+        - initialize 까지 끝나면 내가 원하는 transaction
+            - https://solscan.io/tx/2MYaMvhKzH16gPQUF1WqiZy5K1qRzBDKsrfUGUBRwHixAwWMSuu2EyzV9Q7kr6FaPuc7bsraLRJ8gGjzSJtxaPyC?cluster=devnet
