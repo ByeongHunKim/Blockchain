@@ -33,3 +33,21 @@
             - https://solscan.io/tx/3ekssQADM9mTNKbLgzg3ukkYzmb1fBYEHLy2JLuxRimNqApTTNyxzX9cAda28JSeoLsM2Gv2ttX5Zvwbj5tf14Qf?cluster=devnet
         - initialize 까지 끝나면 내가 원하는 transaction
             - https://solscan.io/tx/2MYaMvhKzH16gPQUF1WqiZy5K1qRzBDKsrfUGUBRwHixAwWMSuu2EyzV9Q7kr6FaPuc7bsraLRJ8gGjzSJtxaPyC?cluster=devnet
+
+- 22.06.21 화
+- create_associate_token_account 생성 성공
+    - 어제 성공한 create_account 는 mint address가 연결 되어있지 않고, owner도 이전되지 않은 account여서 테스트토큰을 주고 받을 수 있는 유효한 주소가 아니었다.
+    - 오늘 solana.labs에 있는 python코드를 확인. 하지만 async/await 방식으로 비동기적으로 작성되어 있어서 실행방법 및 문법 이해에 어려움이 생겼다.
+    - 함수 안에서는 4개의 인자를 받을 수 있는 것으로 파악. 예를 들어 mint:PublicKey, 에서 PublicKey는 변수를 의미하는 것이 아니라 받을 인자의 type을 의미하는 것으로 이해.
+    - pycharm 디버깅 모드로 넣어줄 인자별 type 맞는 지 체크 후 앞에서 발견한 async/await 함수를 일반 client 방식으로 변경-> python 파일 실행 시키고 mint address, owner 변경 된 token account 생성 확인
+    - solscan tx조회, wallet_address 검색하여 token account owner 변경되어서 해당 지갑주소에 연동 된 것 확인
+- reference 
+    - https://github.com/solana-labs/solana-program-library/blob/master/stake-pool/py/spl_token/actions.py
+    - https://github.com/michaelhly/solana-py/blob/2c45353cb510bfeb7259fa19dacbaefe6b9ae3d1/src/spl/token/client.py#L173
+    - https://docs.rs/spl-associated-token-account/latest/spl_associated_token_account/fn.create_associated_token_account.html
+    - https://devpouch.tistory.com/189
+    - https://spl.solana.com/associated-token-account
+    - https://stackoverflow.com/questions/71325517/solana-spl-token-transfer-with-python
+    - https://michaelhly.github.io/solana-py/spl/token/client/#spl.token.client.Token.create_associated_token_account
+- create_associate_token_account 생성 성공 후 발생한 트랜잭션
+    - https://solscan.io/tx/x3a6sPpU22PDWNU16Lgm16ywSM1s364WbzhGukNTEcTgBpSxPXHTwLvTN7V81LCER2rhyuvenLqRB2nUAm4AZSB?cluster=devnet
