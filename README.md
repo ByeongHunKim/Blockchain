@@ -51,3 +51,25 @@
     - https://michaelhly.github.io/solana-py/spl/token/client/#spl.token.client.Token.create_associated_token_account
 - create_associate_token_account 생성 성공 후 발생한 트랜잭션
     - https://solscan.io/tx/x3a6sPpU22PDWNU16Lgm16ywSM1s364WbzhGukNTEcTgBpSxPXHTwLvTN7V81LCER2rhyuvenLqRB2nUAm4AZSB?cluster=devnet
+
+- 22.06.22 수
+- 22.06.21 화 에서 성공한 create_associate_token_account 부분에서 associate_token_account 값 추출해내는 과정을 통해서 값을 얻어내어 DB에 저장을 하고 해당 유저별 tokenAcc에 접근하여 토큰 전송을 할 때 fromAddr(=source) 에 사용위함
+- associate_token_account 값을 추출해는 방법 2가지 
+    - 1. 서버에서 create_associate_token_account 에 대한 트랜잭션이 완료된 후 생성된 txHash값을 이어서 get_transaction 안에 넣어주고 return되는 json 값 안에서  create_associate_token_account 주소를 찾아내는 방법
+        - time.sleep(100)을 줘도 fail이 떠서 의아했다. 왜냐하면 pending이 오래 걸리지 않기 때문이었다.
+        - 퇴근 후 집에서 원인 찾음 : 원인은 solana.py 버전의 문제. 저번에 solana.py의 최신버전 0.24.0 버전은 Account()로 새로운 account를 생성불가 됐던 것이 기억이나서 데스크탑에 설치된 solana.py 버전 체크
+            - 로컬, 서버 solana version 체크
+            ㄴ> 로컬: 0.23.3
+            ㄴ> 서버: 0.17.0
+            ㄴ> 0.17.0 버전은 Account() 는 됐지만, get_transaction 제공이 안되는 것 확인. 그래서 time.sleep을 많이 부여해줘도 제공자체가 안됐기 때문에 fail이 났던 것 
+            (2) 로컬에서 테스트 후 서버에서 리테스트
+            ㄴ> 로컬 pip uninstall solana →  pip install solana~=0.17.0 → 새로운 지갑 생성 (ts-code) → get_transaction, get_token_accounts_by_owner 테스트
+            ㄴ> 결과 : 0.17.0 버전에서도 get_token_accounts_by_owner 는 작동한다.
+            ㄴ> 추가 테스트 로컬 0.17.0 버전에서 get_transaction 되는지 
+            ㄴ> 결과: get_transaction 이 안된다.
+            ㄴ> 나중에 txList 뽑아내려면 get_transaction 을 해야하는데, 0.17.0 버전이면 안되니까 0.23.0 버전으로 재설치 진행
+    - 2. 서버에서 get_token_accounts_by_owner를 사용하는 방법 -> 처음에는 사용 방법을 몰랐다.
+        - 집에서 quicknode 사이트에서 reference 찾음
+        - https://www.quicknode.com/docs/solana/getTokenAccountsByOwner
+        - `from solana.rpc.types import TokenAccountOpts` 를 추가로 import 해줘야한다.
+        - 그래서 owner에 대한 publickey를 넣어줘도 opts가 없다고 에러가 발생했었던 것.
