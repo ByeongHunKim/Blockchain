@@ -10,8 +10,8 @@ from solana.rpc.types import TxOpts
 
 client = client = Client("https://api.devnet.solana.com")
 
-mintAuthority = "" 
-mintAuthorityPriv = "" # DB에 있는 유저별 privKey 
+mintAuthority = "4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3" 
+mintAuthorityPriv = "621yVKGcYBMudqUT9AkHpAohXjunWAWMtXz1NyCjK4wa5NCW886kD5z9AL8wRyjxpqB7LwYPMEaw8444da3roMRu" # DB에 있는 유저별 privKey 
 mintAuthorityKeypair = b58d(mintAuthorityPriv)
 feePayer = Keypair.from_secret_key(mintAuthorityKeypair)
 # new_public_key = new_account.public_key()

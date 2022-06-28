@@ -15,6 +15,18 @@ b58e = lambda x: b58encode(x).decode('ascii')
 client = Client("https://api.devnet.solana.com")
 
 # token Account
-tokenAcc = ""
-result = client.get_token_account_balance(tokenAcc)
-p(result['result']['value']['uiAmount'])
+# tokenAcc = "9nLtXAAG6DGUBmnETGSfWpq9iWfDQ21c7X8tXVjYP584"
+# result = client.get_token_account_balance(tokenAcc)
+# p(result['result']['value']['uiAmount'])
+
+# create_account -> Associated Token Address (ATA)
+
+owner = "4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3"
+result1 = client.create_account(owner)
+p(result1)
+
+transacation = Transaction()
+transacation.add(transfer_checked(
+    TransferCheckedParams(
+        
+    )))

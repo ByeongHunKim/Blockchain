@@ -15,11 +15,11 @@ b58e = lambda x: b58encode(x).decode('ascii')
 
 client = Client("https://api.devnet.solana.com")
 
-mintAuthority = "" 
-mintAuthorityPriv = '' # DB에 있는 유저별 privKey 
-mintPubkey = ""
-fromAddr = ""
-toAddr = ""
+mintAuthority = "4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3" 
+mintAuthorityPriv = '621yVKGcYBMudqUT9AkHpAohXjunWAWMtXz1NyCjK4wa5NCW886kD5z9AL8wRyjxpqB7LwYPMEaw8444da3roMRu' # DB에 있는 유저별 privKey 
+mintPubkey = "JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi"
+fromAddr = "9nLtXAAG6DGUBmnETGSfWpq9iWfDQ21c7X8tXVjYP584"
+toAddr = "LarSVMB2UGLkgmHkkjM8jyKeKCRPdJCvvotJtyKMDSp"
 
 
 mintAuthorityKeypair = b58d(mintAuthorityPriv)
@@ -51,8 +51,8 @@ def tokenTransfer(request):
     try:
         test = client.is_connected()
         print("1. 솔라나 연결여부:" ,test)
-        mintAuthority = "" # owner 고정값
-        mintPubkey = "" # mint 고정값
+        mintAuthority = "4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3" # owner 고정값
+        mintPubkey = "JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi" # mint 고정값
         # userID = request.POST.get('userID')
         # print("2. 현재 유저의 id: ",userID)
         # userinfo = SignUp.objects.get(id = userID)

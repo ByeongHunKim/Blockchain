@@ -17,16 +17,16 @@ import asyncio
 
 client = Client("https://api.devnet.solana.com")
 
-# client = Client("https://solana-devnet-rpc.allthatnode.com/")
+# client = Client("https://solana-devnet-rpc.allthatnode.com/ZYacGTC1847qCjJHnG2sgJBoX02twlMU")
 
-feePayerWalletAddr = "" # feePayer's public_key
-feePayerPriv = "" # feePayer's private_key
+feePayerWalletAddr = "GRdeuaHQFoeAb2tV2GkL1FoPWcDNESXDPkugZTPjPhEF" # feePayer's public_key
+feePayerPriv = "YZVNGBs4Y74M8anjvzgreEKzJNbLmzGLuPP8BKsuGkYsCdVYtVEsAHLACgx7orTt5cQ3xPNrTdgN4FWospWJN8F" # feePayer's private_key
 feePayerKeypair = b58d(feePayerPriv)
 feePayer = Keypair.from_secret_key(feePayerKeypair)
 
-newOwner = '' # wallet_address = owner가 입력한 wallet_address로 이전 된다.
+newOwner = '7CwXNFhpZK1a1Y9XQebb7LC65n2zziY1NqX9fJKGiUz6' # wallet_address = owner가 입력한 wallet_address로 이전 된다.
 newOwnerPub = PublicKey(newOwner)
-mint1 = '' # mint Address
+mint1 = 'JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi' # mint Address
 mintAddr = PublicKey(mint1)
 
 

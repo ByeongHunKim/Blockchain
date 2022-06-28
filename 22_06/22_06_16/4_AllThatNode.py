@@ -10,7 +10,7 @@ from base58 import b58encode, b58decode
 
 # client = Client("https://api.devnet.solana.com")
 
-client = Client("https://solana-devnet-rpc.allthatnode.com/apikey")
+client = Client("https://solana-devnet-rpc.allthatnode.com/ZYacGTC1847qCjJHnG2sgJBoX02twlMU")
 
 test = client.is_connected()
 
@@ -21,7 +21,7 @@ print("1. 솔라나와 연결여부:" ,test)
 fromAddr = "2ETywJspK2JfTe8isFTuts9HCUfZgpr58f8c8EAkGTqH"
 print("2. 보내는 지갑주소 :" ,fromAddr)
 
-fromAddrPriv = ""
+fromAddrPriv = "5nfVbbJamnMWdNpbYTxoxHwAePmqhSgREMdhiXRkDrSqyvKm2XN5R2A6cmM75HZFBK6jJ4Q3xAZRUkyc1Vc6XsEf"
 print("3. 보내는지갑 비밀키 :" ,fromAddrPriv)
 
 toAddr = "vbrnG3aWMgFtZJuKyyiVZFban3JhnXdCVkWTddqQpzz" # toAddr = request.POST.get('toAddr')

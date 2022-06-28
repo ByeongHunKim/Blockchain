@@ -15,11 +15,11 @@ b58e = lambda x: b58encode(x).decode('ascii')
 
 client = Client("https://api.devnet.solana.com")
 
-mintAuthority = "" 
-mintAuthorityPriv = '' # DB에 있는 유저별 privKey 
-mintPubkey = ""
-fromAddr = ""
-toAddr = ""
+mintAuthority = "4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3" 
+mintAuthorityPriv = '621yVKGcYBMudqUT9AkHpAohXjunWAWMtXz1NyCjK4wa5NCW886kD5z9AL8wRyjxpqB7LwYPMEaw8444da3roMRu' # DB에 있는 유저별 privKey 
+mintPubkey = "JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi"
+fromAddr = "9nLtXAAG6DGUBmnETGSfWpq9iWfDQ21c7X8tXVjYP584"
+toAddr = "LarSVMB2UGLkgmHkkjM8jyKeKCRPdJCvvotJtyKMDSp"
 
 
 mintAuthorityKeypair = b58d(mintAuthorityPriv)
@@ -84,7 +84,7 @@ def getBalanceToken(request):
         # userinfo = SignUp.objects.get(id = userID)
         # print("3. 현재 유저의 정보 :",userinfo)
         # 유저의토큰어카운트 = userinfo.유저의 토큰어카운트주소
-        userTokenAcc = ""
+        userTokenAcc = "9nLtXAAG6DGUBmnETGSfWpq9iWfDQ21c7X8tXVjYP584"
         print("2. 현재 유저의 토큰어카운트 :",userTokenAcc)
         # 유저의 토큰어카운트가 존재한다면, 현재는 값을 조회할 수 있는 상황
         # 1. get_account_info 하고 value 값에 접근한 후 sol type으로 변환

@@ -19,7 +19,7 @@ client = Client("https://api.devnet.solana.com")
 
 test = client.is_connected()
 print("1. 솔라나 연결여부:" ,test)
-resultOfTxn = ""
+resultOfTxn = "641rUjSxsgmZJ62FmgiFR4GANPt1oWWKv8qsTjAwL5wgBQ7B11JEb78RbcHsrp4rD5UxACzjiZetd8jAKYETBBxR"
 print(resultOfTxn)
 result = client.get_transaction(resultOfTxn)
 print(result)

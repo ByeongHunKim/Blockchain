@@ -18,14 +18,14 @@ import asyncio;
 client = Client("https://api.devnet.solana.com")
 
 
-feePayerWalletAddr = "" # feePayer's public_key
-feePayerPriv = "" # feePayer's private_key
+feePayerWalletAddr = "4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3" # feePayer's public_key
+feePayerPriv = "621yVKGcYBMudqUT9AkHpAohXjunWAWMtXz1NyCjK4wa5NCW886kD5z9AL8wRyjxpqB7LwYPMEaw8444da3roMRu" # feePayer's private_key
 feePayerKeypair = b58d(feePayerPriv)
 feePayer = Keypair.from_secret_key(feePayerKeypair)
 
-newOwner = '' # wallet_address = owner가 입력한 wallet_address로 이전 된다.
+newOwner = '2j4uG8nov1P5uozM2TqggHzTJdQ7ysGBtxxNFxhfiEYz' # wallet_address
 newOwnerPub = PublicKey(newOwner)
-mint1 = '' # mint Address
+mint1 = 'JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi' # mint Address
 mintAddr = PublicKey(mint1)
 
 
@@ -39,4 +39,3 @@ result = client.send_transaction(transaction, feePayer)
 resultOfTxn = result['result']
 print(f"txHash 결과 == https://solscan.io/tx/{resultOfTxn}?cluster=devnet")
 
-# https://solscan.io/tx/x3a6sPpU22PDWNU16Lgm16ywSM1s364WbzhGukNTEcTgBpSxPXHTwLvTN7V81LCER2rhyuvenLqRB2nUAm4AZSB?cluster=devnet

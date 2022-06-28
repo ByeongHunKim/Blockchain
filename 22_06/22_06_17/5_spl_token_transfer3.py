@@ -49,9 +49,9 @@ if __name__ == "__main__":
     transfer = TransferService(client, service, token)
     a = client.get_account_info(transfer.keypair.public_key)
     transaction = transfer.make_transaction(
-        source='LarSVMB2UGLkgmHkkjM8jyKeKCRPdJCvvotJtyKMDSp',
-        mint='JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi',
-        dest='9nLtXAAG6DGUBmnETGSfWpq9iWfDQ21c7X8tXVjYP584',
+        source='',
+        mint='',
+        dest='',
         owner=transfer.keypair.public_key,
         amount=1,
         decimals=9

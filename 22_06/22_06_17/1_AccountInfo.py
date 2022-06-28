@@ -7,14 +7,14 @@ from base58 import b58encode, b58decode as b58d
 from base64 import b64decode as b64d
 b58e = lambda x: b58encode(x).decode('ascii')
 
-# 토큰 정보 solscan -> https://solscan.io/token/?cluster=devnet
+# 토큰 정보 solscan -> https://solscan.io/token/JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi?cluster=devnet
 
 uri = "https://api.devnet.solana.com"
 
 client = Client(uri)
 
 # token address 
-token = ""
+token = "JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi"
 
 # token 정보 확인
 tokenAccInfo = client.get_account_info(token)
@@ -30,7 +30,7 @@ print(f"3. 토큰의 데이터 b64decode로 추출: {data}")
 mint_authority_option = struct.unpack("<I", data[0:4])[0]
 print(f"4. mint_authority_option: {mint_authority_option}")
 
-# mint token "" 의 authority 주소
+# mint token "JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi" 의 authority 주소
 mint_authority_decode = struct.unpack("<32s", data[4:36])[0]
 mint_authority = b58e(mint_authority_decode)
 p(mint_authority_decode)

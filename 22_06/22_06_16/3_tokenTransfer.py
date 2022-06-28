@@ -10,14 +10,14 @@ from solana.transaction import Transaction
 from base58 import b58encode, b58decode
 
 
-# Fjnn1URmdWwrCqeWVWZKsSYiJCKBj8ZVdKsPLMcDaxv3 's privkey
-feePayer = ""
+# Fjnn1URmdWwrCqeWVWZKsSYiJCKBj8ZVdKsPLMcDaxv3
+feePayer = "237Vv8DrGKK8GqyBmSMdhuBtqFi4nUgGMYjYad5NYQiAE5rPYkqVzqDYPcu26Ts9NdJ6SYHWSD52BcukQMZBoKAf"
 feePayerKeypair = b58decode(feePayer)
 feePayerPub = feePayerKeypair[32:]
 # print(b58encode(feePayerPub).decode())
 
-# 4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3 's privkey
-alice = ""
+# 4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3
+alice = "621yVKGcYBMudqUT9AkHpAohXjunWAWMtXz1NyCjK4wa5NCW886kD5z9AL8wRyjxpqB7LwYPMEaw8444da3roMRu"
 aliceKeypair = b58decode(alice)
 
 mintPubkey = "JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi"
@@ -47,3 +47,4 @@ client.send_transaction(
 # --request POST \
 # --header "Content-Type: application/json" \
 # --data '{"jsonrpc":"2.0","id":1, "method":"getBlockHeight"}'
+
