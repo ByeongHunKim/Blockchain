@@ -17,20 +17,20 @@ from solana.rpc.types import TokenAccountOpts
 from spl.token.instructions import transfer_checked, TransferCheckedParams
  
 ENDPOINT = "https://api.devnet.solana.com"
-PUBKEY = "4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3"
+PUBKEY = ""
 
 # D2Qu1V15cmRn9rt3ZXN3GrX4Uuust24v3BjL6VCcbsoN
  
  
 async def main():
     async with AsyncClient(ENDPOINT) as client:
-        newOwnerPub = PublicKey("BMXMcxoNBUzbDSPHwCTLACwJU9SVxkwA3T17D6DTe9De")
-        newOwnerPub1 = PublicKey("4NwS4ezQ3tU4sX26KUmwzKxQwpgwBFMuGYp6U5TBPvc3")
-        newOwnerPriv = ("621yVKGcYBMudqUT9AkHpAohXjunWAWMtXz1NyCjK4wa5NCW886kD5z9AL8wRyjxpqB7LwYPMEaw8444da3roMRu")
-        newOwnerTokenAddr = "LarSVMB2UGLkgmHkkjM8jyKeKCRPdJCvvotJtyKMDSp"
+        newOwnerPub = PublicKey("")
+        newOwnerPub1 = PublicKey("")
+        newOwnerPriv = ("")
+        newOwnerTokenAddr = ""
         fromAddrKeypair = b58decode(newOwnerPriv)
         signer = Keypair.from_secret_key(fromAddrKeypair)
-        mintAddr = PublicKey("JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi")
+        mintAddr = PublicKey("")
         connect = await client.is_connected()
         queryTokenAcc = await client.get_token_accounts_by_owner(newOwnerPub,TokenAccountOpts(mint=mintAddr))
         result = queryTokenAcc['result']['value']
