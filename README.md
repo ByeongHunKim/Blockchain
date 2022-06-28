@@ -105,3 +105,25 @@
     - 맨위에서 설명했듯이 첫 코드에 get_token_account_by_owner로 유저의 userPubKey와 tokenaddess 를 넣어서 다시 조회를 해주게 되면
     - 비록 20초만에 바로 저장을 못해줬더라도, 이후 다시 버튼을 누르면 -> 다시 유저의 wallet_address로 토큰어카운트를 조회하게 될 것이다.
     - 그럼 다시 재조회하여 추출한 값을 DB에 저장하면 된다.
+
+## 22.06.27 월
+
+- 이더리움 가스비 -> 현재 시세를 찾는 메서드 사용법 존재하는지 찾아보기
+- async await 방식으로 `create_associated_account` 시도해보기
+- `quicknode` free trial version -> 7월 4일까지
+    - runnerM 테스트 -> RPC URL `quicknode` 껄로 진행
+    - 메인넷 지갑 get_balance, txList 조회 정상작동
+        - 하지만 솔라나 전송은 테스트 못해본 상황
+
+### starchain 토큰전송할 때 입력받은 입금주소 validation 해결방안
+- `token_account` 주소를 보여주지 않는게 , 유효성 검사가 더 편하다
+    - 왜냐하면 wallet_address (owner) 주소만 받으면 `get_token_accounts_by_owner` 에 `wallet_address` 와 `token_address` 를 넣으면 n개의 토큰을 가지고 있다고 하더라도, 
+    - 입력한 `token_address` 와 연동된 `associated_token_account` 를 찾을 수 있기 때문이다.
+- `get_account_info` 로 `token_account` 값을 넣어서 `JSON` 을 확인해본 결과 , 안에 `token_address` 가 존재하지 않았기 때문에 유효성 검사가 어렵다.
+
+### 체크해볼 것
+- n개 이상의 토큰을 보유하고 있는 지갑주소를 `get_token_accounts_by_owner` 에 넣었을 때 res로 받은 `JSON` 과
+- 테스트 토큰만 가지고 있는 경우의 res 로 받은 `JSON` 형식이 같은지 여부 체크해야함
+
+### 결과
+- 일치한다.
