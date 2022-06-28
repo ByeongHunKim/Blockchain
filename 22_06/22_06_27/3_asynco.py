@@ -2,7 +2,7 @@ import asyncio
 from solana.rpc.async_api import AsyncClient
  
 ENDPOINT = "https://api.devnet.solana.com"
-PUBKEY = "76z2iLit2eyhwfKXH9hRY3S1HNrxsRTQB41FmUumV5rj"
+PUBKEY = ""
  
  
 async def main():

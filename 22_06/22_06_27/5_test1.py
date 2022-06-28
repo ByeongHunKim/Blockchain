@@ -18,9 +18,9 @@ from solana.rpc.types import TokenAccountOpts
 client = Client("https://api.devnet.solana.com")
 
 
-newOwner = 'D2oE8PK7zkgNBhPGL6Ro4hctcEStbFZKonZAxStap4zx' # wallet_address = owner가 입력한 wallet_address로 이전 된다.
+newOwner = '' # wallet_address = owner가 입력한 wallet_address로 이전 된다.
 newOwnerPub = PublicKey(newOwner)
-mint1 = 'JS3FiJxtv5CYURf7oC9eMPzq21uz1PpsvW9MFfzZDsi' # mint Address
+mint1 = '' # mint Address
 mintAddr = PublicKey(mint1)
 
 

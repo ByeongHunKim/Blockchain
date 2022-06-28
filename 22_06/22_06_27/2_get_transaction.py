@@ -23,7 +23,7 @@ client = Client("https://api.mainnet-beta.solana.com")
 # solana_client = Client("https://dark-black-frog.solana-mainnet.quiknode.pro/")
 
 
-txResult = client.get_transaction("3scbMzCoAV1ufgERTGWbPvbzsvAhrSMkmFYLhXe2kSru3KU2BKRYPiufp9b33r1jByunYG17CqLAWpkDs2K2E31b")
+txResult = client.get_transaction("")
 print(txResult)
 
 blockTime1 = txResult['result']['blockTime']
