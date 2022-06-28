@@ -127,3 +127,4 @@
 
 ### 결과
 - 일치한다.
+- 결과 정리한 사이트 `https://velog.io/@hunsm4n/solana.py-gettokenaccountsbyowner`
