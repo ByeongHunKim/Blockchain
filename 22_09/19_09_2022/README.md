@@ -1,6 +1,9 @@
-# Django
+# INTRODUCTION
 
 - `Django` 프레임워크가 정말 많은 기능을 가지고 있다.
+- `Django`는 매우 객체 지향적인 프레임워크이다.
+  - 그래서 객체 지향 프로그래밍의 기본이 필요하다. (OOP)
+  - python's class Inheritance Method Constructor에 관한 내용
 
 ## Django study를 통해 배울 것
 
@@ -53,3 +56,71 @@
 - 원하는게 뭔지 정확히 알아야한다.
   - 만약 관리패널과 ORM 사용자 인증이 필요한 Applicaion을 만들고 싶고 rest API, GraphQL API가 필요하다면, Django를 선택하는 편이 좋다
   - 그렇지않고 아주 작은 서비스 application을 구축해야한다면 (관리패널조차 없는 작은 rest API, 큰 SQL 데이터베이스도 필요없고 아주 작은 rest API, 표면적인 일부만 필요한 경우)
+
+# SET UP
+
+## python3
+
+### python3 download
+
+- `python.org/downloads/`
+- download -> run terminal -> `$ python`
+- console에서 `$ python` 실행 시 버전이 3으로 보이는지 확인 필요
+
+## consist folder
+
+- `$ mkdir airbnb-clone-backend`
+- `$ cd airbnb-clone-backend`
+- 만약 레포를 구성하고 싶다면 ? `$ git init`
+- 나는 testCode 레포에서 연습으로 진행하고 있기 때문에 따로 하진 않을 것
+
+## Poetry
+
+- Python 프로젝트를 작업할 때 몇 가지 패키지를 다운로드 해야한다.
+- Django 또한 다운로드 받아야 하는 패키지이다.
+- Python 패키지를 다운로드 하는 방법에는 여러가지가 있지만, 가장 좋은 방법은 poetry를 사용하는 방법이다.
+
+### poetry에 대해서
+
+1. python 패키지를 설치하고 관리할 수 있게 해준다.
+2. 이걸 사용해서 Django와 필요한 나머지 패키지를 설치할 것.
+3. `https://python-poetry.org/docs/` 이동
+4. 설치방법은 두 가지. a: OSX, MacOS, Linux, WSL -> curl 사용. b: Windows PowerShell 사용하는 경우 해당 명령어 사용
+5. curl -> `curl -sSL https://install.python-poetry.org | python3 -`
+
+### 가상환경이란
+
+1. 가상 환경은 쉽게 생각해 비눗방울이라고 하면 될 것 같다.
+2. 가상 환경은 컴퓨터에 같은 패키지를 다운로드 할 수 있게 해준다.
+3. 서로 다른 product에 대해 독립적으로 패키지 설치를 허용한다.
+4. 가상환경은 컴퓨터에 다른 폴더로 독립적인 설치 환경을 분리할 수 있다.
+5. 전역으로 설치하지 않고 같은 패키지를 다른 버전으로 사용하고 싶기 때문
+6. 또는 어떤 라이브러리를 사용하고 있는데, 그게 Django의 특정 버전에선 작동하지 않을 수도 있기 때문
+
+### 새로운 가상환경 구축
+
+1. console에서 `$ poetry` 했을 때 작동 해야한다.
+2. `$ poetry init` -> 이 명령어를 실행하면 대화하는 느낌으로 패키지를 만들기 위한 가이드가 나타날 것.
+3. pyproject.toml 파일 생성 시 성공 : 우리 방울에 대한 description 이다.
+
+### django 설치
+
+1. `$ conda create -n airbnb python=3.9`
+2. `$ conda activate airbnb`
+3. `$ poetry add django`
+4. poetry.lock 파일도 자동으로 만들어진다. 이 파일은 우리의 코드나 가상환경이 필요로 하는 모든 패키지에 대한 정보를 가지고 있다.
+5. 핵심은 poetry는 우리의 코드가 실행될 환경에 대한 정보를 담고 있는 파일을 만들 수 있게 해준다.
+6. `poetry.lock` 과 `pyproject.toml` 두 개의 파일을 poetry가 읽어서 파일이 가지고 있는 소프트웨어를 설치할 것
+
+### poetry 가상환경 활성화
+
+- `$ poetry shell`
+- poetry 가상환경 비활성화 시 -> `$ exit`
+
+## Start Project
+
+- startproject : 프로젝트를 시작하는 명령어
+  - `$ django-admin startproject config .`
+- .gitignore 추가
+
+- 이렇게 poetry로 가상환경을 가지고 있고, Django 프로젝트도 만들었다.
