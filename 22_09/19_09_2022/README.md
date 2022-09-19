@@ -1,4 +1,4 @@
-# 1. INTRODUCTION
+# 0. INTRODUCTION
 
 - `Django` 프레임워크가 정말 많은 기능을 가지고 있다.
 - `Django`는 매우 객체 지향적인 프레임워크이다.
@@ -57,7 +57,7 @@
   - 만약 관리패널과 ORM 사용자 인증이 필요한 Applicaion을 만들고 싶고 rest API, GraphQL API가 필요하다면, Django를 선택하는 편이 좋다
   - 그렇지않고 아주 작은 서비스 application을 구축해야한다면 (관리패널조차 없는 작은 rest API, 큰 SQL 데이터베이스도 필요없고 아주 작은 rest API, 표면적인 일부만 필요한 경우)
 
-# 2. SET UP
+# 1. SET UP
 
 ## python3
 
@@ -125,7 +125,7 @@
 
 - 이렇게 poetry로 가상환경을 가지고 있고, Django 프로젝트도 만들었다.
 
-# 3. OOP WITH PYTHON
+# 2. OOP WITH PYTHON
 
 ## The 4 Pillars of OOP (객체지향 프로그래밍 OOP 핵심 개념 4개)
 
@@ -189,3 +189,17 @@
   - 다른 방법으로는 클래스의 dir을 출력하는 방법이 있다.
   - dir는 디렉터리를 의미한다. 클래스의 속성들과 메서드들을 보여준다.
     - ex) `dir(class_name)`
+
+# 3. Django Basic
+
+## 3.1 Runserver
+
+- `manage.py` 파일은 Django 프로젝트를 만들 때 자동으로 만들어졌다.
+- 파일 안의 코드를 이해할 필요는 없다.
+- 단지, `manage.py` 파일이 terminal에서 Django 명령을 실행한다는 것 뿐이다.
+
+### Django를 실제 서버에 배포할 때는 서버를 실행할 때 manage.py 말고 다른 걸 사용할 것.
+
+- 개발 단계에서 vscode로 작업할 때 모든 커맨드를 `manage.py` 를 사용해 실행 할 것.
+- `$ python manage.py runserver` 를 했을 때 `db.sqlite3`라는 파일이 생성되었다.
+  - 그리고 적용되지않은 migrations이 18개 있다고도 하는데 아직은 정확히 모른다.
