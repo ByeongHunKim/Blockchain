@@ -232,3 +232,12 @@
 - 아래 명령어를 수행하기 위해서는 먼저 서버를 종료한다.
 - ex) `$ python manage.py migrate`
 - `$ python manage.py runserver` 한 뒤에 `http://127.0.0.1:8000/admin` 에 접속해보면 이전의 에러가 사라지고 admin 패널이 렌더링 된다.
+
+## 3.1 Recap
+
+- `Django` 는 세션, 비밀번호 등 모든 유저 데이터를 저장하는 곳으로 DB를 사용한다.
+- ex) `you have 18 unapplied migration(s).` 와 같은 에러는 DB에 필요한 transformation이 있는데, 아직 적용되지 않았음을 `Django`가 알게 될 때 나타난다.
+- 마이그레이션 파일에는 DB의 모양을 변형시키는 Python 코드가 들어있다.
+- 위의 에러는 18개의 파일이 있고, 각 파일에 아직 DB에 적용되지 않은 transformation이 있다는 의미이다.
+- 정리하자면, 위 메시지는 DB에 적용되지 않은 마이그레이션 파일이 존재할 때 발생되는 에러이다.
+- `Django`가 원하는 모양의 DB에서 저장하고 읽어올 수 있도록 DB모양의 상태를 변경하기 위해서 migrate 명령어를 실행하는 것
