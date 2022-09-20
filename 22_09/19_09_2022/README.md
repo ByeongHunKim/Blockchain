@@ -203,3 +203,32 @@
 - 개발 단계에서 vscode로 작업할 때 모든 커맨드를 `manage.py` 를 사용해 실행 할 것.
 - `$ python manage.py runserver` 를 했을 때 `db.sqlite3`라는 파일이 생성되었다.
   - 그리고 적용되지않은 migrations이 18개 있다고도 하는데 아직은 정확히 모른다.
+
+## 3.1 Migrations
+
+- `no such table: django_session` 이라는 에러
+
+  - `Django` 는 django_session이라는 테이블을 DB에서 찾고 있지만 실패하여 발생한 에러
+  - 하지만 현재 DB는 django_session이란 테이블을 가지고 있지 않다.
+
+### 데이터베이스는 어디에 있는가?
+
+- 서버를 실행했을 때 자동으로 생성된 `db.sqlite3` 파일이다.
+- 이 파일이 데이터베이스 파일이다. ( 이 파일을 Django가 바라보고 있다.)
+- 해당 파일에서 django_session 이라는 테이블은 찾고 있던 것.
+
+### 왜 Django는 django_session 테이블을 찾는가?
+
+- Django에는 여러가지 기능들이 내장 되어있다.
+- 예를 들면, admin 패널인데 이게 작동하기 위해서는 admin유저가 필요하다.
+- admin 유저가 작동하기 위해서는 session이 필요하다.
+- Django는 admin유저를 위한, admin 세션을 만드려고 했던 것.
+
+### 그럼 어떻게 해당 테이블을 생성할 수 있는가?
+
+- migration을 통해 가능하다.
+- migration은 DB의 모양을 변경하고 싶을 때 사용된다.
+- 또는 migration은 DB의 state를 수정한다는 의미.
+- 아래 명령어를 수행하기 위해서는 먼저 서버를 종료한다.
+- ex) `$ python manage.py migrate`
+- `$ python manage.py runserver` 한 뒤에 `http://127.0.0.1:8000/admin` 에 접속해보면 이전의 에러가 사라지고 admin 패널이 렌더링 된다.
