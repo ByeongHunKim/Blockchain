@@ -323,3 +323,55 @@
 
 - `$ python manage.py startapp houses` 부터 시작해서 reviews, payments.... 모듈화를 시키는 것이라고 이해를 했다.
 - 근데 나는 지금까지 하나로만 진행을 해왔는데,, 혼동이 온다.
+
+## 4.1 Migrations
+
+- `Django`에게 왜 이런 식으로 데이터를 설명해야 하는가?
+
+  - DB와 소통해야 하기 때문.
+  - DB는 원래 SQL언어로 소통하는데, `Django`가 좋아서 데이터가 어떻게 생겼는지 이해한다.
+  - 이걸로 인하여 우리를 대신하여 DB와 소통을 해준다.
+  - 즉, 파이썬 코드를 쓰면 `Django`는 그것을 SOL 코드로 번역한다.
+  - 그리고 이미 `Django`에게 데이터가 어떻게 생겼는지 설명하고 있기 때문에, DB와 소통하는 것 외에 멋진 것들을 할 수 있는 것.
+    - 이미 데이터가 어떻게 생겼는지 알고 있으니 우리 데이터에 대한 관리 패널을 자동으로 생성해주는게 가능하다.
+    - 그래서 커스텀 데이터에 대한 관리 패널을 자동으로 생성해준다.
+
+- 객체지향에서는 많은 것들을 상속 받을 수가 있다.
+
+```
+@admin.register(House)
+class houseAdmin(admin.ModelAdmin):
+    pass
+```
+
+- 이렇게 만들어 준 뒤, DB한테 House model에 대해 알려줘야 한다.
+  - 그렇지않으면 에러가 발생한다.
+
+1. `$ python manage.py makemigrations`]
+
+- 위의 명령어를 실행하면 아래의 결과가 나온다.
+  ```
+  Migrations for 'houses':
+  houses/migrations/0001_initial.py
+    - Create model House
+  ```
+
+2. 위에서 볼 수 있듯이, Django가 house/migrations 라는 폴더 내부에 파일을 만들었다.
+
+3. migration을 적용시키려면?
+
+- `$ python manage.py migrate`
+
+  ```
+  Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, houses, sessions
+  Running migrations:
+  Applying houses.0001_initial... OK
+  ```
+
+- models 안의 어떤 데이터의 형태를 수정하든 간에, DB에게 사실을 알려줘야만 한다.
+  - 그래서 migration을 생성한 다음, migrate을 하면 된다.
+
+### migration, migrate 완료 -> house 추가 가능
+
+- models에서 정의한 name, price, Description, address들이 추가가 될 수 있다. 새로운 데이터를 직접 만드는 것
