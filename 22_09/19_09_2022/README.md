@@ -431,3 +431,9 @@ class houseAdmin(admin.ModelAdmin):
         "pets_allowed"
     ]
   ```
+
+## 4.3 Documentation (장고 공식문서)
+
+- `https://www.webforefront.com/django/modeldatatypesandvalidation.html`
+
+- `https://docs.djangoproject.com/ko/4.1/ref/models/fields/`

@@ -18,3 +18,6 @@ class houseAdmin(admin.ModelAdmin):
 
     # 어떻게 검색을 가능하게 할 것인가?
     search_fields = ("address",)
+
+    # 어떻게 admin 패널에서 제외 시킬 것인가?
+    exclude = ("price",)
