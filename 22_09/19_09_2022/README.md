@@ -347,7 +347,7 @@ class houseAdmin(admin.ModelAdmin):
 - 이렇게 만들어 준 뒤, DB한테 House model에 대해 알려줘야 한다.
   - 그렇지않으면 에러가 발생한다.
 
-1. `$ python manage.py makemigrations`]
+1. `$ python manage.py makemigrations`
 
 - 위의 명령어를 실행하면 아래의 결과가 나온다.
   ```
@@ -375,3 +375,27 @@ class houseAdmin(admin.ModelAdmin):
 ### migration, migrate 완료 -> house 추가 가능
 
 - models에서 정의한 name, price, Description, address들이 추가가 될 수 있다. 새로운 데이터를 직접 만드는 것
+
+## 4.2 Recap
+
+1. application은 데이터와 그 데이터의 로직이 들어있는 섬 같은 것
+2. 그래서 처음으로 `House` 를 위한 application을 `$ python manage.py startapp houses`로 만들어주었다.
+3. 그리고 `config/setting.py` 에서 application 설정을 해주었다. -> `"houses.apps.HousesConfig"` 를 `INSTALLED_APP = []` 에 추가
+
+4. 만약 새로 생성한 application을 따로 관리하고 싶다면, `CUSTOM_APPS = []` 를 만들어서 안에 넣고, 나머지는 `SYSTEM_APPS =[]` 안에 넣어준다.
+5. 그리고 `INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS` 로 해준다.
+
+6. `models.py` 파일이 application에 있는 데이터의 정의나 설명을 적는 곳이다.
+7. 그리고 application에서 가지고 있을 데이터를 설명한다.
+
+8. 이 방법이 유용한 이유에는 두 가지가 있다.
+
+- 첫번째 : `Django`가 파이썬 코드로 되어있는 데이터의 형태를 데이터베이스에게 SOL언어로 설명해줌으로 써 데이터베이스와 소통해준다.
+- 두번째 : 해당 application 폴더 안에 있는 `admin.py` 파일에서 model을 등록시키기만 해도 `Django`가 admin 패널을 통째로 만들어준다.
+  - 검색, 삭제, 편집, 생성까지 가능한 admin 패널이다.
+
+9. 중요한 점은 `models.py` 에서 테이블을 만든 후 에 migration을 생성하지 않고 migrate도 안되어있으면 에러가 발생한다.
+
+- `$ python manage.py makemigrations` 명령어를 통해 `models.py` 안에 무언가 있다는 것을 알게 된다.
+- 그리고 나서 `$ python manage.py migrate` 명령어를 통해 생성한 migration을 적용시켜주면 된다.
+- 위의 과정들이 수행되면, 데이터베이스의 형태를 업데이트 한다.
