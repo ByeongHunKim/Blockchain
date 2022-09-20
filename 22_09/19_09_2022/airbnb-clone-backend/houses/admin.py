@@ -9,4 +9,12 @@ from .models import House
 # 즉, House model(models.py에서 만든 house 테이블)을 위한 admin 패널을 만든다고 말하고 있는 것.
 @admin.register(House)
 class houseAdmin(admin.ModelAdmin):
-    pass
+
+    # 어떻게 admin 패널에 coulmn들을 구현할 것인가?
+    list_display = ("name", "price", "address", "pets_allowed")
+
+    # 어떤 column 을 기준으로 필터링 할 것인가?
+    list_filter = ("price", "pets_allowed")
+
+    # 어떻게 검색을 가능하게 할 것인가?
+    search_fields = ("address",)

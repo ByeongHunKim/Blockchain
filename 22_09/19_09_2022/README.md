@@ -338,7 +338,7 @@
 
 - 객체지향에서는 많은 것들을 상속 받을 수가 있다.
 
-```
+```python
 @admin.register(House)
 class houseAdmin(admin.ModelAdmin):
     pass
@@ -399,3 +399,35 @@ class houseAdmin(admin.ModelAdmin):
 - `$ python manage.py makemigrations` 명령어를 통해 `models.py` 안에 무언가 있다는 것을 알게 된다.
 - 그리고 나서 `$ python manage.py migrate` 명령어를 통해 생성한 migration을 적용시켜주면 된다.
 - 위의 과정들이 수행되면, 데이터베이스의 형태를 업데이트 한다.
+
+## 4.3 Admin
+
+- 프레임워크를 사용하기 때문에, 알맞는 property를 사용하는 것. -> 그러면 `Django`가 알아서 해준다.
+- 여기서, 프레임워크만 사용하게 되면 프레임워크 없이는 뭘 해야 할지 모르게 되는 문제가 발생한다.
+  - 프레임워크를 위한 코드를 짤 줄 밖에 모른다. 실제로 `Django`를 쓰면 일어나는 일이다.
+  - 만약 Python으로 프로그래밍 하는 법을 먼저 배우지 않고 장고부터 한다면, 이런 참조만 할 줄 알게 된다는 것.
+
+### str method 설정 (houses/models.py)
+
+- 아래의 코드를 넣어주면 admin 패널에서 깔끔하게 확인할 수 있다.
+
+  ```
+      def __str__(self):
+          return self.name
+  ```
+
+### admin 패널에 coulmn들을 구현하는 방법 (houses/admin.py)
+
+- `list_display`라는 property이다.
+
+  ```python
+  @admin.register(House)
+  class houseAdmin(admin.ModelAdmin):
+    # pass
+    list_display = [
+        "name",
+        "price",
+        "addreess",
+        "pets_allowed"
+    ]
+  ```
