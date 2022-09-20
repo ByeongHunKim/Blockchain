@@ -245,7 +245,8 @@
 ## 3.3 Super User
 
 - `$ python manage.py createsuperuser`
-  """
+
+  ```
   Username (leave blank to use 'bstudent'):
   Email address:
   Password:
@@ -255,5 +256,6 @@
   This password is entirely numeric.
   Bypass password validation and create user anyway? [y/N]: y
   Superuser created successfully.
-  """
+  ```
+
 - 어드민 로그인 페이지에 위에 입력한 정보로 로그인을 진행하면 된다.
