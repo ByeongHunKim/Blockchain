@@ -295,3 +295,31 @@
 - 만약 프로젝트를 한다고하면, 각각 분리 시킬 수 있는 모듈이 무엇일지 고민해봐야한다.
   - 그렇게 별개의 폴더에 캡슐화 하는 것.
 - 모듈화는 어플리케이션을 좀 더 정리되게끔 만들어준다.
+
+# 4. DJANGO APPS
+
+## 4.0 Models
+
+- `$ python manage.py startapp houses`
+- `Django`는 프레임워크이기 때문에, `houses` 폴더 안의 파일들이 선택사항이 아니라는 의미이다.
+
+  - 이러한 파일들은 꼭 존재해야하고, 장고가 호출해서 쓰기 때문.
+  - 그래서 파일에 쓰는 코드는 중요하다.
+  - ex) models.py -> 모델은 어플리케이션에서 데이터의 모양을 묘사한 것.
+    - 이런 데이터의 설명과 같은 것들은 정확히 우리가 `models.py` 에서 작성해야하는 것듣이다.
+    - 그러면 `Django`는 `models.py` 안의 코드를 가져가서 DB에게 말을 건다.
+
+1. House class 만들기 `(houses/models.py)`
+
+- 실제 어플리케이션에서 실제 클론 코딩을 할 때는 집, 경험, 하우스 규칙, 편의시설을 위한 모델, 예약, 유저, 리뷰, 리스트를 위한 모델 등 엄청 많다.
+- `TextField`는 `CharField` 보다 길다. `CharField`는 텍스트를 쓰고 싶을 때 쓰는 건데, 길이가 약간 짧거나 문자길이에 제한을 줘야할 때 사용한다.
+- `TextField`는 유저가 길이가 긴 텍스트를 쓸 수 있게 해준다.
+
+2. config/settings.py 에서 houses app 설정\
+
+- `INSTALLED_APPS = []` -> 여기에 application을 알려주는 의미다.
+
+### 의문점
+
+- `$ python manage.py startapp houses` 부터 시작해서 reviews, payments.... 모듈화를 시키는 것이라고 이해를 했다.
+- 근데 나는 지금까지 하나로만 진행을 해왔는데,, 혼동이 온다.
