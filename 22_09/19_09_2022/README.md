@@ -440,7 +440,7 @@ class houseAdmin(admin.ModelAdmin):
 
 # 5. USER APP
 
-## 5.1 Introduction
+## 5.0 Introduction
 
 - user applicaion을 만들고 그 안에서 user model, User class를 만들 것.
 - 그리고 AbstractUser 라는 걸 모두 상속 받을 것.
@@ -453,3 +453,31 @@ class houseAdmin(admin.ModelAdmin):
 ## black extension 설치
 
 - `$ poetry add --dev black --allow-prereleases`
+
+## 5.1 Custom Model
+
+- 새로운 application users 생성
+- `AbstractUser` 상속 - users/models.py
+- `setting.py` -> app추가, AUTHMODEL 추가
+- 서버 종료
+- `db.sqlite3` 파일 삭제
+- houses migrations 파일 1~3 삭제
+- makemigrations, migrate
+- 서버 재실행
+  ```python
+  python manage.py startapp users
+  python manage.py makemigrations
+  python manage.py migrate
+  python manage.py runserver-
+  ```
+- userAdmin 적용 - `admin.py`
+
+  ```python
+    from django.contrib import admin
+    from django.contrib.auth.admin import UserAdmin
+    from .models import User
+
+    @admin.register(User)
+    class CustomUserAdmin(admin.ModelAdmin):
+        pass
+  ```
