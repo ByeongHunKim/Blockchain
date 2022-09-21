@@ -535,3 +535,58 @@ class houseAdmin(admin.ModelAdmin):
 
 - 자동 formatting 되게 설정하려고 했는데, 적용이 되질 않는다.
 - 그래서 black이 설치는 되어있으니 `$ black admin.py` 이렇게 명령어로 format을 수정해주고 있다.
+
+## 5.5 Foreign Keys ( 서로 다른 application의 model들을 어떻게 연결시키는 가)
+
+```
+예를 들어 house에 호스트(주인)가 있었으면 좋은 상황,
+그리고 그 주인은 Users model 안에 있는 사용자가 되어야한다.
+이게 바로 '연결' 이 필요한 이유이다.
+인스타그램에선 사용자가 사진을 올릴 수 있다. 이 말은 사진에는 업로드한 사람이 있다는 것.
+사용자는 댓글을 달 수 있다. 그 댓글은 사진에 달린 것. 사용자는 사진에 좋아요를 할 수 있고
+좋아요는 사진이랑 연결되어 있다. 이렇게 모든 게 연결되어 있다.
+
+airbnb의 경우에는 house에 주인이 있다. 그리고 house에는 사용자로부터 작성된 리뷰가 있다.
+그리고 사용자는 house도 만들 수 있다.
+사용자 간의 메시지를 주고 받을 수 있는 채팅방도 있다. (두 사람이 한 채팅방에 있다)
+채팅방에는 사용자로부터 작성된 메시지가 있다.
+
+그래서 model을 연결하는 방법을 꼭 알아야 한다.
+```
+
+### 데이터베이스에 연결성을 어떻게 표현할 수 있는가?
+
+- `Django` 랑 데이터베이스는 기본적으로 unique한 ID를 데이터베이스에 있는 모든 object에 만들고 있다.
+- 그래서 원하든 원하지않든 데이터베이스에 생성한 모든 것들은 ID를 가지고 있다.(PK와 같은 의미 == Primary Key 기본키)
+- 생성하고 이전의 ID를 지우더라도 ID는 다시 사용되지 않는다.
+
+### 지금까지 생성한 applicaion (users, houses를 연결해보자)
+
+1. 사용자에 대한 정보를 저장하는 User 테이블 (AbstractUser)
+2. 집에 대한 정보를 저장하는 House 테이블
+   - 테이블에 owner column 추가 한 뒤, 유저의 ID를 넣을 것.
+   - 이를 통해서 house에 사용자의 ID를 저장할 수 있는 column이 owner인 것을 알 수 있다.
+3. 단순한 숫자가 아니기 때문에 , owner column의 타입은 양의 정수가 아니다.
+   - `Foregin Key(외래키)` 이다.
+   - 외래키로 column의 타입을 정해주면, `Django`는 이 숫자가 User 테이블에 있는 user의 ID라는 것을 알게 된다.
+   - 나중에 room 정보를 가져올 때, `Django`는 이 숫자도 가져와서 숫자 2인 ID를 가진 사용자를 찾은 후
+   - 해당 사용자에 대한 정보를 함께 줄 것이다.
+4. `models.ForeignKey()`로 타입을 지정해준 뒤, 어떤 model의 것을 저장하는 건지 알려줘야한다.
+   - `models.ForeignKey("users.User")` ----------------> `"users.User" == "application_name.DB_name"`
+   - `TypeError: __init__() missing 2 required positional arguments: 'to' and 'on_delete'` : 에러
+   - Foreign Key도 필수 요소로 on_delete가 필요하다
+   - `on_delete`는 참조하는 model이 삭제될 때 어떻게 할건지를 설정하게 해준다.
+
+### 4번에서 두 가지 옵션이 있다.
+
+1. 주인이 계정을 지워도 주인이 설정하지 않은 house를 가지고 싶다면 -> `on_delete=models.SET_NULL`
+
+- 이렇게 하면 사용자가 계정을 지워도 house는 주인이 없는 상태로 남을 것
+
+2. 만약 그렇지 않다면 -> `on_delete=models.CASCADE` 를 하면 된다.
+
+- `CASCADE`의 의미는 사용자가 계정을 지우면 house도 지워진다는 의미이다.
+
+5. 모두 완료 되었다면, migrations , migrate을 하면 된다.
+
+- 필요한 default 값을 지정하는게 귀찮으면 `migrations` 폴더의 기록들과 `db.sqlite3` 을 지워주면 된다.
