@@ -481,3 +481,14 @@ class houseAdmin(admin.ModelAdmin):
     class CustomUserAdmin(admin.ModelAdmin):
         pass
   ```
+
+## 5.2 Custom Field
+
+- 5.1에서 우리만의 User 모델을 가지고 있게 되었다. 하지만 커스텀은 되어있지 않다.
+- 5.2에서 커스텀을 해볼 것.
+
+### User 모델을 커스텀할 수 있는 방법
+
+- AbstractUser를 덮어쓴다
+- 속성 몇 개를 없앤다
+- 로직을 추가한다
