@@ -512,3 +512,26 @@ class houseAdmin(admin.ModelAdmin):
 - `It is impossible to add a non-nullable field 'name' to user without specifying a default. This is because the database needs something to populate existing rows.Please select a fix:`
   - 기존에 이미 생성된 사용자에게는 어떤 값을 부여해야하는지에 대한 에러
   - `default = ""` 로 해결
+
+## 5.4 Custom Admin
+
+### field set ( User 관리자 페이지 커스텀 작업)
+
+- 관리자 페이지에서 model의 field가 보이는 순서를 설정할 수 있게 해준다
+- 일종의 섹션 안에 field를 넣어서 그 섹션에 제목을 붙일 수 있다는 것
+
+- field와 field set의 차이점
+  - 섹션을 추가할 수 있다.
+
+### list_display
+
+- 사용자 list를 표시할 때 보이는 column을 설정하는 Tuple이다.
+
+### 기억해야할 점
+
+- fieldsets나 list_display에 넣은 필드가 꼭 model안에 존재해야한다는 것
+
+### black 사용법
+
+- 자동 formatting 되게 설정하려고 했는데, 적용이 되질 않는다.
+- 그래서 black이 설치는 되어있으니 `$ black admin.py` 이렇게 명령어로 format을 수정해주고 있다.
