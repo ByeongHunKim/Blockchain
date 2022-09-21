@@ -492,3 +492,23 @@ class houseAdmin(admin.ModelAdmin):
 - AbstractUser를 덮어쓴다
 - 속성 몇 개를 없앤다
 - 로직을 추가한다
+
+## 5.3 Defaults
+
+### 첫번째 에러
+
+- `It is impossible to add a non-nullable field 'is_host' to user without specifying a default. This is because the database needs something to populate existing rows.Please select a fix` 해당 에러가 발생한 이유
+  - `non-nullable field` 때문인데, 이건 무엇인가?
+  - `BooleanField`는 두 개만 될 수 있다. (True or False)
+  - 그렇기 때문에, null이 될 수 없다.
+- 에러 해결에는 두가지 옵션이 있다.
+  - 첫번쨰 : default 값을 추가하는 것
+    - 만약 `default=False` 옵션을 주면 이전에 생성된 모든 사용자는 해당 column 값을 False로 받게된다.
+  - 두번째 : `null=True` 옵션을 주는 것
+    - 그러면 `Django`가 여기엔 아무값을 넣지않으면서 이 column을 추가할 수 있다.
+
+### 두번째 에러
+
+- `It is impossible to add a non-nullable field 'name' to user without specifying a default. This is because the database needs something to populate existing rows.Please select a fix:`
+  - 기존에 이미 생성된 사용자에게는 어떤 값을 부여해야하는지에 대한 에러
+  - `default = ""` 로 해결
