@@ -437,3 +437,19 @@ class houseAdmin(admin.ModelAdmin):
 - `https://www.webforefront.com/django/modeldatatypesandvalidation.html`
 
 - `https://docs.djangoproject.com/ko/4.1/ref/models/fields/`
+
+# 5. USER APP
+
+## 5.1 Introduction
+
+- user applicaion을 만들고 그 안에서 user model, User class를 만들 것.
+- 그리고 AbstractUser 라는 걸 모두 상속 받을 것.
+
+### pylance extension 설치
+
+- vsCode를 위한 python 서버이다.
+- 자동완성, 자동 import 같은 걸로 날 도와줄 수 있다
+
+## black extension 설치
+
+- `$ poetry add --dev black --allow-prereleases`
