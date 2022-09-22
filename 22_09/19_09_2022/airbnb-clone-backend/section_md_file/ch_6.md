@@ -7,6 +7,9 @@
     - [Pillow 패키지](#pillow----)
     - [Pillow 설치](#pillow---)
   - [6.1 Room Model](#61-room-model)
+    - [새로운 application 만들기](#----application----)
+    - [새로운 model 만들기](#----model----)
+    - [해당 model에 amenity 라는 새로운 model 만들기](#---model--amenity--------model----)
 
 # Chapter6 : MODELS AND ADMIN
 
@@ -72,3 +75,20 @@
   ```
 
 ## 6.1 Room Model
+
+### 새로운 application 만들기
+
+- `$ python manage.py startapp rooms`
+
+- `config/setting.py` 에서 applicaion 추가하기
+
+### 새로운 model 만들기
+
+- `rooms/models.py` 에서 model 추가하기
+
+- `""" Room Model Definition """` 이라는 코드 컨벤션이 있다.
+
+### 해당 model에 amenity 라는 새로운 model 만들기
+
+- amenity란?
+  - many-to-many 관계 ( 다대다 관계 )
