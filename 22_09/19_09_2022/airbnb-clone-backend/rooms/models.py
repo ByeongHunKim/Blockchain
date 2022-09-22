@@ -1,7 +1,8 @@
 from django.db import models
+# abstract model 사용
+from common.models import CommonModel
 
-
-class Room(models.Model):
+class Room(CommonModel):
 
     """Room Model Definition"""
 
@@ -33,12 +34,15 @@ class Room(models.Model):
         choices=RoomKindChoices.choices,
     )
     owner = models.ForeignKey(
-        "user.User",
+        "users.User",
         on_delete=models.CASCADE,
     )
+    # amenity 적용 방법
+    amenities = models.ManyToManyField("rooms.Amenity",)
 
 
-class Amenity(models.Model):
+
+class Amenity(CommonModel):
 
     """Amenity Definition"""
 
