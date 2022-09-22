@@ -1,3 +1,13 @@
+# 목차
+
+- [Chapter6 : MODELS AND ADMIN](#chapter6---models-and-admin)
+  - [6.0 User Model](#60-user-model)
+    - [column 추가](#column---)
+    - [column 옵션 만드는 방법](#column----------)
+    - [Pillow 패키지](#pillow----)
+    - [Pillow 설치](#pillow---)
+  - [6.1 Room Model](#61-room-model)
+
 # Chapter6 : MODELS AND ADMIN
 
 ## 6.0 User Model
@@ -60,3 +70,5 @@
 
   • Installing pillow (9.2.0)
   ```
+
+## 6.1 Room Model
