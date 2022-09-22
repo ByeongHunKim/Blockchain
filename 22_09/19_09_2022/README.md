@@ -656,3 +656,19 @@ airbnb의 경우에는 house에 주인이 있다. 그리고 house에는 사용�
 5. 모두 완료 되었다면, migrations , migrate을 하면 된다.
 
 - 필요한 default 값을 지정하는게 귀찮으면 `migrations` 폴더의 기록들과 `db.sqlite3` 을 지워주면 된다.
+
+## 5.6 Super Mega Recap
+
+- `null=True` : 옵션을 추가하면, 해당 column을 데이터베이스에 추가해서 null로 둘 수 있다.
+
+- `ForeignKey` 필드엔 두 개의 요소가 필요하다.
+  - 하나는 model의 이름과 그걸가지고 있는 application의 이름이다.
+  - 다른 하나는 `on_delete` 이다 --> 우리에게 house의 주인 유저가 계정을 지우면 어떻게 할 지 설정하게 해준다.
+  - `CASCADE` 만약 house가 2이라는 ID를 가진 사용자를 owner로 가지고 있고 그 2라는 ID를 가진 사용자가 계정을 삭제한다면
+  - `models.CASCADE`로 인해 house도 같이 삭제된다.
+  - 하지만 결제정보같은 경우 결제내역을 만든 사용자가 계정을 지워도 절대 결제 내역을 삭제하고싶지 않으면 `SET_NULL` 을 선택하면 된다.
+  - `models.SET_NULL`
+
+### 데이터베이스를 시각화 해주는 extension
+
+- SQLite Viewer 를 설치한 뒤 `db.sqlite3` 파일을 클릭하면 된다.
