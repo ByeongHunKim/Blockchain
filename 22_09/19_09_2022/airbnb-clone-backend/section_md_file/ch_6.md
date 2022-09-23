@@ -205,3 +205,12 @@
   ```
 
 - 적용한뒤 makemigrations, migrate을 하면 끝
+
+## 6.3 Recap
+
+- model 이 abstract 라는 건, Django가 model을 데이터베이스에 넣지 않기를 바란다는 뜻
+  - 대신 이 model을 설계도로 사용하겠다는 것
+
+### rooms/admin.py admin 패널
+
+-
