@@ -227,3 +227,39 @@
   ```
   - admin.py 에서 list_filter에 created_at, updated_at 을 쓰면 오늘, 지난7일, 이번달, 이번해 등으로 filter할 수 있다.
   - 그렇지 않고 , models.py 에서 `readonly_fields = ()` 안에 넣으면 특정 column을 눌렀을 때 안에서도 확인이 가능하다.
+
+## 6.5 Experiences
+
+- 여행하면서 할 수 있는 활동들 = experience
+
+### experiences application 추가
+
+- `$ python manage.py startapp experiences`
+- `settings.py` 에 `install` 추가 `"experiences.apps.ExperiencesConfig",`
+
+### experiences models.py 수정
+
+- `from common.models import CommonModel`
+
+- `DateField` 는 date를 저장한다. `일, 월, 연도` 를 저장한다.
+- `DateTimeField`는 `일, 월, 년도, 시간, 분, 초`를 저장한다.
+- `TimeField`는 `시간, 분, 초`만 기억한다.
+  - 위 3 가지를 보면서 원하는 걸 데이터 타입으로 사용하면 된다.
+
+### experience amenity
+
+- Room에도 backyard 같이 룸에 대한 옵션이 있었듯이, experience에 뭐가 포함되어있는 지 알려주는 `perks`를 만들 것
+
+  - 하지만 프로그래밍에서 이름 짓는 것이 매우 어렵다..
+
+- `하나의 experience가 여러 perks를 가질 수 있다 + perk 또한 많은 experience에 사용 될 수 있다` 를 적용시키기 위해서는
+
+  - Experience model에서 `perks = models.ManyToManyField("experiences.Perk")` 를 설정해준다.
+
+- `python manage.py makemigrations`
+- `python manage.py migrate`
+
+### 필수적이지 않은 데이터들 처리 ( 꼭 입력하지 않아도 되는 것들 )
+
+- `blank = True` 또는 `null = True`
+- `default = ""`
