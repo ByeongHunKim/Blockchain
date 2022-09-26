@@ -214,3 +214,16 @@
 ### rooms/admin.py admin 패널
 
 -
+
+## 6.4 Rooms Admin
+
+### 어떻게 python에게 class를 string으로 보여줄 수 있을까?
+
+- 장고 모델을 포함한 모든 class에는 메서드를 사용하여 class가 string으로 보이게 하도록 할 수 있다.
+  - str method
+  ```python
+      def __str__(self) -> str:
+        return self.name
+  ```
+  - admin.py 에서 list_filter에 created_at, updated_at 을 쓰면 오늘, 지난7일, 이번달, 이번해 등으로 filter할 수 있다.
+  - 그렇지 않고 , models.py 에서 `readonly_fields = ()` 안에 넣으면 특정 column을 눌렀을 때 안에서도 확인이 가능하다.
