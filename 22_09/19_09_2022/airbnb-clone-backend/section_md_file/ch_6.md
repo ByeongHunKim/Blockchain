@@ -263,3 +263,80 @@
 
 - `blank = True` 또는 `null = True`
 - `default = ""`
+
+## 6.6 Categories
+
+### 두 가지 선택지
+
+- experiences 를 위한 카테고리, rooms를 위한 카테고리 두 가지가 있다.
+- 여기서 첫번째 방법은 experiences model에 카테고리를 추가하고, rooms model에도 카테고리를 추가하는 방법인데, 복붙을 해야해서 별로다
+- 그래서 카테고리만 포함할 새로운 application을 생성할 것.
+
+- `$ python manage.py startapp categories`
+- `settings에 installed 추가`
+
+### models.py 수정
+
+- choices 를 적용하게 할 수 있다.
+
+  ```python
+  class Categories(CommonModel):
+
+  """ Room Or Experience Category """
+
+  class CategoryKindChoices(models.TextChoices):
+      ROOM = "rooms", "Rooms"
+      EXPERIENCES = "experiences", "Experiences"
+
+  name = models.CharField(max_length=50,)
+  kind = models.CharField(max_length=15, choices=CategoryKindChoices.choices,)
+
+  def __str__(self) -> str:
+      return self.name
+  ```
+
+### experience, room 모델에 적용 시키기
+
+- `category = models.ForeignKey("categories.Category", on_delete=models.CASCADE,)`
+
+  - `SET_NULL` 은 categories의 category가 삭제된다면, Experiences의 카테고리를 null로 만들 것
+  - `CASCADE`로 하게되면 카테고리가 지워질 때 , experiences도 같이 지워지기 떄문.
+
+  ```python
+      # 카테고리 추가
+    category = models.ForeignKey(
+        "categories.Category",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
+  ```
+
+- experience, rooms models에 추가
+  - `python manage.py makemigrations`
+  - `python manage.py migrate`
+
+### admin 추가
+
+- DB import 후 admin 추가
+
+```python
+from .models import Category
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+```
+
+### DB 이름 변경 - categories/models.py
+
+- admin 페이지에서 복수형으로 보여지게 수정
+
+```python
+    class Meta:
+        verbose_name_plural = "Categories"
+```
+
+### category admin 페이지 설정
+
+- list_display 설정
